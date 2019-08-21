@@ -1015,6 +1015,8 @@ _end_${_ID}:
 !macroend
 
 Function .onInit
+  SetSilent normal
+
   StrCmp "@CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL@" "ON" 0 inst
   IfSilent inst 0
 
