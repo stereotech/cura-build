@@ -3,7 +3,7 @@
 Function BuildCura {
   Param (
     # Docker parameters
-    [string]$DockerImage = "cura-build-environment:1809-vs2015-amd64",
+    [string]$DockerImage = "stereotech/ste-slicer-build-environment:stable",
 
     # Branch parameters
     [string]$CuraBranchOrTag = "master",
