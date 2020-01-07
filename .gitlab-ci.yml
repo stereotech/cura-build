@@ -1,0 +1,9 @@
+image: stereotech/ste-slicer-build-environment:stable
+
+stages:
+  - build
+  - deploy
+  
+buildWindowsInstaller:
+  stage: build
+  script: .\scripts\windows\build.ps1
