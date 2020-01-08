@@ -16,14 +16,14 @@ Param (
   [Int32]$CuraVersionMinor,
   [Parameter(Mandatory = $true)]
   [Int32]$CuraVersionPatch,
-  [Parameter(Mandatory = $true)]
+  [Parameter(Mandatory = $false)]
   [AllowEmptyString()]
   [string]$CuraVersionExtra = "",
   [Parameter(Mandatory = $false)]
   [string]$CuraBuildName = "win",
   [Parameter(Mandatory = $false)]
   [string]$CuraCloudApiRoot = "https://api.ultimaker.com",
-  [Parameter(Mandatory = $true)]
+  [Parameter(Mandatory = $false)]
   [Int32][ValidatePattern("[0-9]+")]$CuraCloudApiVersion = 0,
   [Parameter(Mandatory = $false)]
   [string]$CuraCloudAccountApiRoot = "https://account.ultimaker.com",
