@@ -31,7 +31,6 @@ Param (
   [string]$CuraWindowsInstallerType = "EXE"
 )
 
-Write-Output $CuraVersionMajor
 $outputDirName = "windows-installers"
 
 New-Item $outputDirName -ItemType "directory" -Force
