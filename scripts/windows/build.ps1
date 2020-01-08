@@ -50,7 +50,7 @@ else {
   exit 1
 }
 
-& winpty docker.exe run -it --rm `
+& winpty docker.exe run -t --rm `
   --volume ${repoRoot}:C:\cura-build-src `
   --volume ${outputRoot}:C:\cura-build-output `
   --env CURA_BUILD_SRC_PATH=C:\cura-build-src `
