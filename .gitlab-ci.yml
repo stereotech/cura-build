@@ -6,4 +6,4 @@ stages:
   
 buildWindowsInstaller:
   stage: build
-  script: .\scripts\windows\build.ps1
+  script: .\scripts\windows\build.ps1 -CuraVersionMajor 0 -CuraVersionMinor 0 -CuraVersionPatch 1
