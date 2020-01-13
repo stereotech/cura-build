@@ -22,10 +22,10 @@ if(EXISTS ${WINDOWS_IDENTITIY_PFX_FILE})
         message(WARNING "USE WITH CAUTION: Password for the PFX file has been set!")
     endif()
     
-    # Signing Cura.exe
+    # Signing SteSlicer.exe
     add_custom_command(
         TARGET signing PRE_BUILD
-        COMMAND ${SIGNTOOL_EXECUTABLE} sign ${signtool_OPTIONS} Cura.exe
+        COMMAND ${SIGNTOOL_EXECUTABLE} sign ${signtool_OPTIONS} SteSlicer.exe
         ## Other optional options:
         # /tr timestampServerUrl 
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/package
@@ -43,14 +43,14 @@ if(EXISTS ${WINDOWS_IDENTITIY_PFX_FILE})
     # Signing the installer
     add_custom_target(signing-installer) # Sadly "TARGET package POST_BUILD" can't be used in the following add_custom_command()
     if(${BUILD_OS_WIN32})
-        set(CURA_INSTALLER_NAME ${CPACK_NSIS_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_SYSTEM_NAME}.exe)
+        set(STESLICER_INSTALLER_NAME ${CPACK_NSIS_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_SYSTEM_NAME}.exe)
     else()
         # TODO: Verify whether ${CPACK_SYSTEM_NAME} is "win64", when doing 64bit builds.
-        set(CURA_INSTALLER_NAME ${CPACK_NSIS_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-win64.exe)
+        set(STESLICER_INSTALLER_NAME ${CPACK_NSIS_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-win64.exe)
     endif()
     add_custom_command(
         TARGET signing-installer
-        COMMAND ${SIGNTOOL_EXECUTABLE} sign ${signtool_OPTIONS} ${CURA_INSTALLER_NAME}
+        COMMAND ${SIGNTOOL_EXECUTABLE} sign ${signtool_OPTIONS} ${STESLICER_INSTALLER_NAME}
         ## Other optional options:
         # /tr timestampServerUrl 
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
