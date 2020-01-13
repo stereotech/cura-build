@@ -1,4 +1,4 @@
-project(cura-build)
+project(steslicer-build)
 
 cmake_minimum_required(VERSION 3.6)
 
@@ -13,26 +13,25 @@ endif()
 include(ExternalProject)
 include(GNUInstallDirs)
 
-# find_package(CuraBuildEnvironment)
 include(BuildPlatformDetection)
 include(GetFromEnvironmentOrCache)
 include(SetProjectDependencies)
 
-option(BUILD_PACKAGE "Create a package with the build of Cura" ON)
+option(BUILD_PACKAGE "Create a package with the build of STE Slicer" ON)
 option(SIGN_PACKAGE "Perform signing of the created package. Implies BUILD_PACKAGE" ON)
 
-set(CURA_BUILDTYPE          "" CACHE STRING "Build type of Cura, eg. 'testing'")
-set(CURA_NO_INSTALL_PLUGINS "" CACHE STRING "A list of plugins to exclude from installation, should be separated by ';'.")
-set(CURA_MSI_PRODUCT_GUID   "" CACHE STRING "The Product GUID for Cura MSI")
-set(CURA_MSI_UPGRADE_GUID   "" CACHE STRING "The Upgrade GUID for Cura MSI")
+set(STESLICER_BUILDTYPE          "" CACHE STRING "Build type of STE Slicer, eg. 'testing'")
+set(STESLICER_NO_INSTALL_PLUGINS "" CACHE STRING "A list of plugins to exclude from installation, should be separated by ';'.")
+set(STESLICER_MSI_PRODUCT_GUID   "" CACHE STRING "The Product GUID for STE Slicer MSI")
+set(STESLICER_MSI_UPGRADE_GUID   "" CACHE STRING "The Upgrade GUID for STE Slicer MSI")
 
-# Cura MSI product GUID and upgrade GUID
+# STE Slicer MSI product GUID and upgrade GUID
 if(BUILD_PACKAGE)
-    if(NOT DEFINED CURA_MSI_PRODUCT_GUID)
-        message(STATUS "CURA_MSI_PRODUCT_GUID must be provided.")
+    if(NOT DEFINED STESLICER_MSI_PRODUCT_GUID)
+        message(STATUS "STESLICER_MSI_PRODUCT_GUID must be provided.")
     endif()
-    if(NOT DEFINED CURA_MSI_UPGRADE_GUID)
-        message(STATUS "CURA_MSI_UPGRADE_GUID must be provided.")
+    if(NOT DEFINED STESLICER_MSI_UPGRADE_GUID)
+        message(STATUS "STESLICER_MSI_UPGRADE_GUID must be provided.")
     endif()
 endif()
 
@@ -46,7 +45,7 @@ GetFromEnvironmentOrCache(FDMMATERIALS_BRANCH_OR_TAG "master" STRING "The name o
 GetFromEnvironmentOrCache(CURABINARYDATA_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for cura-binary-data")
 GetFromEnvironmentOrCache(CURAENGINE_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for CuraEngine")
 GetFromEnvironmentOrCache(URANIUM_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for Uranium")
-GetFromEnvironmentOrCache(CURA_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for Cura")
+GetFromEnvironmentOrCache(STESLICER_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for STE Slicer")
 GetFromEnvironmentOrCache(LIBCHARON_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for libCharon")
 
 GetFromEnvironmentOrCache(CURAENGINE_ENABLE_MORE_COMPILER_OPTIMIZATION_FLAGS "ON" STRING "Whether to enable extra compiler optimization flags for CuraEngine")
@@ -54,24 +53,24 @@ GetFromEnvironmentOrCache(CURAENGINE_ENABLE_MORE_COMPILER_OPTIMIZATION_FLAGS "ON
 GetFromEnvironmentOrCache(EXTRA_REPOSITORIES "" STRING "Extra repositories to install. Expected to have a CMake based build system. Format is (<project name> <git URL> <cmake configuration options>\;)*")
 
 # Create the version-related variables
-GetFromEnvironmentOrCache(CURA_VERSION_MAJOR "0" STRING "Cura Major Version")
-GetFromEnvironmentOrCache(CURA_VERSION_MINOR "0" STRING "Cura Minor Version")
-GetFromEnvironmentOrCache(CURA_VERSION_PATCH "0" STRING "Cura Patch Version")
-GetFromEnvironmentOrCache(CURA_VERSION_EXTRA "${TAG_OR_BRANCH}" STRING "Cura Extra Version Information")
+GetFromEnvironmentOrCache(STESLICER_VERSION_MAJOR "0" STRING "STE Slicer Major Version")
+GetFromEnvironmentOrCache(STESLICER_VERSION_MINOR "0" STRING "STE Slicer Minor Version")
+GetFromEnvironmentOrCache(STESLICER_VERSION_PATCH "0" STRING "STE Slicer Patch Version")
+GetFromEnvironmentOrCache(STESLICER_VERSION_EXTRA "${TAG_OR_BRANCH}" STRING "STE Slicer Extra Version Information")
 
-GetFromEnvironmentOrCache(CURA_EXTRA_PROJECTS_DIR "" STRING "Directory where extra projects to build are located.")
+GetFromEnvironmentOrCache(STESLICER_EXTRA_PROJECTS_DIR "" STRING "Directory where extra projects to build are located.")
 
-set(CURA_VERSION "${CURA_VERSION_MAJOR}.${CURA_VERSION_MINOR}.${CURA_VERSION_PATCH}")
-if(NOT "${CURA_VERSION_EXTRA}" STREQUAL "")
-    set(CURA_VERSION "${CURA_VERSION}-${CURA_VERSION_EXTRA}")
+set(STESLICER_VERSION "${STESLICER_VERSION_MAJOR}.${STESLICER_VERSION_MINOR}.${STESLICER_VERSION_PATCH}")
+if(NOT "${STESLICER_VERSION_EXTRA}" STREQUAL "")
+    set(STESLICER_VERSION "${STESLICER_VERSION}-${STESLICER_VERSION_EXTRA}")
 endif()
 
 # Build projects step
 add_custom_target(projects ALL COMMENT "Building Projects...")
 
 file(GLOB _projects projects/*.cmake)
-if(NOT CURA_EXTRA_PROJECTS_DIR STREQUAL "")
-    file(GLOB _extra_projects ${CURA_EXTRA_PROJECTS_DIR}/*.cmake)
+if(NOT STESLICER_EXTRA_PROJECTS_DIR STREQUAL "")
+    file(GLOB _extra_projects ${STESLICER_EXTRA_PROJECTS_DIR}/*.cmake)
     list(APPEND _projects ${_extra_projects})
 endif()
 
@@ -95,10 +94,6 @@ if(BUILD_PACKAGE)
 
     if(BUILD_OS_WINDOWS)
         include(packaging/windows.cmake)
-    elseif(BUILD_OS_OSX)
-        include(packaging/osx.cmake)
-    elseif(BUILD_OS_LINUX)
-        include(packaging/linux.cmake)
     else()
         message(STATUS "Do not know how to build an executable for the current platform! You will have to create it manually.")
     endif()
@@ -110,10 +105,6 @@ if(SIGN_PACKAGE)
 
     if(BUILD_OS_WINDOWS)
         include(signing/windows.cmake)
-    elseif(BUILD_OS_OSX)
-        include(signing/osx.cmake)
-    elseif(BUILD_OS_LINUX)
-        include(signing/linux.cmake)
     else()
         message(STATUS "Do not know how to sign the executable for the current platform! You will need to perform signing manually.")
     endif()

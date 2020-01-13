@@ -23,9 +23,9 @@ add_custom_command(
 add_custom_command(
     TARGET build_bundle POST_BUILD
     # NOTE: Needs testing here, whether CPACK_SYSTEM_NAME is working good for 64bit builds, too.
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/packaging/cura.ico ${CMAKE_BINARY_DIR}/package/
-    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/package/cura.ico ${CMAKE_BINARY_DIR}/package/Cura.ico
-    COMMENT "copying cura.ico as Cura.ico into package/"
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/packaging/steslicer.ico ${CMAKE_BINARY_DIR}/package/
+    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/package/steslicer.ico ${CMAKE_BINARY_DIR}/package/SteSlicer.ico
+    COMMENT "copying steslicer.ico as SteSlicer.ico into package/"
 )
 
 #
@@ -45,15 +45,15 @@ endif()
 install(DIRECTORY ${CMAKE_BINARY_DIR}/package/
         DESTINATION "."
         USE_SOURCE_PERMISSIONS
-        COMPONENT "_cura" # Note: _ prefix is necessary to make sure the Cura component is always listed first
+        COMPONENT "_steslicer" # Note: _ prefix is necessary to make sure the Cura component is always listed first
 )
 
 if(CPACK_GENERATOR MATCHES "NSIS64" OR CPACK_GENERATOR MATCHES "NSIS")
     # Only NSIS needs to have arduino and vcredist
-    install(DIRECTORY ${EXTERNALPROJECT_INSTALL_PREFIX}/arduino
-            DESTINATION "."
-            COMPONENT "arduino"
-    )
+    # install(DIRECTORY ${EXTERNALPROJECT_INSTALL_PREFIX}/arduino
+    #         DESTINATION "."
+    #         COMPONENT "arduino"
+    # )
 
     install(FILES ${EXTERNALPROJECT_INSTALL_PREFIX}/vcredist_x64.exe
             DESTINATION "."

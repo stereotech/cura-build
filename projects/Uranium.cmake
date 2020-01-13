@@ -10,7 +10,7 @@ find_package(SciPy 0.17 REQUIRED)
 # WORKAROUND: CMAKE_ARGS itself is a string list with items separated by ';'. Passing a string list that's also
 # separated by ';' as an argument via CMAKE_ARGS will make it confused. Converting it to "," and then to ";" is a
 # workaround.
-string(REPLACE ";" "," _cura_no_install_plugins "${CURA_NO_INSTALL_PLUGINS}")
+string(REPLACE ";" "," _cura_no_install_plugins "${STESLICER_NO_INSTALL_PLUGINS}")
 
 ExternalProject_Add(Uranium
     GIT_REPOSITORY https://github.com/ultimaker/Uranium

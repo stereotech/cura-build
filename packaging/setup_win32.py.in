@@ -135,7 +135,7 @@ build_options = {
         "requests",
         "idna",
         "UM",
-        "cura",
+        "steslicer",
         "stl",
         "shapely",
         "networkx",
@@ -148,10 +148,10 @@ build_options = {
     ],
     "include_files": [
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/bin/CuraEngine.exe", ""),
-        ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/cura/plugins", ""),
+        ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/steslicer/plugins", ""),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/uranium/plugins", ""),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/python3.5/site-packages/UM/Qt/qml/UM", "qml/UM"),
-        ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/cura/resources", "resources"),
+        ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/steslicer/resources", "resources"),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/uranium/resources", "resources"),
         ("@CMAKE_PREFIX_PATH@/bin/openctm.dll", ""), # For opening .CTM files
         # Preinstalled PyQt5 installation
@@ -167,26 +167,26 @@ build_options = {
 }
 
 executables = [
-    Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
+    Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/steslicer_app.py",
                base="Win32GUI",
-               targetName = "Cura.exe",
-               icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
+               targetName = "STESlicer.exe",
+               icon="@CMAKE_SOURCE_DIR@/packaging/steslicer.ico"
                ),
-    Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
+    Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/steslicer_app.py",
                base="Console",
-               targetName = "CuraCLI.exe",
-               icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
+               targetName = "STESlicerCLI.exe",
+               icon="@CMAKE_SOURCE_DIR@/packaging/steslicer.ico"
                ),
     
 ]
 
 setup(
-    name = "Ultimaker Cura",
-    version = "@CURA_VERSION_MAJOR@.@CURA_VERSION_MINOR@.@CURA_VERSION_PATCH@",
-    description = "Ultimaker Cura",
-    long_description = "Ultimaker Cura - 3D Printing Software",
-    author = "Ultimaker B.V.",
-    url = "http://software.ultimaker.com/",
+    name = "Stereotech STE Slicer",
+    version = "@STESLICER_VERSION_MAJOR@.@STESLICER_VERSION_MINOR@.@STESLICER_VERSION_PATCH@",
+    description = "Stereotech STE Slicer",
+    long_description = "Stereotech STE Slicer - 5D Printing Software",
+    author = "Stereotech LLC.",
+    url = "https://stereotech.org/software",
     license = "GNU LESSER GENERAL PUBLIC LICENSE (LGPL)",
 
     options = {"build_exe": build_options},
