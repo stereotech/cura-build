@@ -3,12 +3,11 @@ Param (
   # Docker parameters
   [string]$DockerImage = "stereotech/ste-slicer-build-environment:stable",
   # Branch parameters
-  [string]$SteSlicerBranchOrTag = "master",
-  [string]$UraniumBranchOrTag = "master",
-  [string]$CuraEngineBranchOrTag = "master",
-  [string]$CuraBinaryDataBranchOrTag = "master",
-  [string]$FdmMaterialsBranchOrTag = "master",
-  [string]$CharonBranchOrTag = "master",
+  [string]$SteSlicerBranchOrTag = "develop",
+  [string]$UraniumBranchOrTag = "3.6.0",
+  [string]$CuraEngineBranchOrTag = "3.6.0",
+  [string]$CuraBinaryDataBranchOrTag = "3.6.0",
+  [string]$CharonBranchOrTag = "3.6.0",
   # Cura release parameters
   [Parameter(Mandatory = $true)]
   [Int32]$SteSlicerVersionMajor,
@@ -20,7 +19,7 @@ Param (
   [AllowEmptyString()]
   [string]$SteSlicerVersionExtra = "",
   [Parameter(Mandatory = $false)]
-  [string]$SteSlicerBuildName = "win",
+  [string]$SteSlicerBuildName = "win64",
   [Parameter(Mandatory = $false)]
   [string]$SteSlicerWindowsInstallerType = "EXE"
 )
@@ -52,9 +51,8 @@ else {
   --env STESLICER_BRANCH_OR_TAG=$SteSlicerBranchOrTag `
   --env URANIUM_BRANCH_OR_TAG=$UraniumBranchOrTag `
   --env CURAENGINE_BRANCH_OR_TAG=$CuraEngineBranchOrTag `
+  --env LIBCHARON_BRANCH_OR_TAG=$CharonBranchOrTag `
   --env CURABINARYDATA_BRANCH_OR_TAG=$CuraBinaryDataBranchOrTag `
-  --env FDMMATERIALS_BRANCH_OR_TAG=$FdmMaterialsBranchOrTag `
-  --env CHARON_BRANCH_OR_TAG=$CharonBranchOrTag `
   --env STESLICER_VERSION_MAJOR=$SteSlicerVersionMajor `
   --env STESLICER_VERSION_MINOR=$SteSlicerVersionMinor `
   --env STESLICER_VERSION_PATCH=$SteSlicerVersionPatch `

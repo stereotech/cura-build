@@ -10,16 +10,16 @@ find_package(SciPy 0.17 REQUIRED)
 # WORKAROUND: CMAKE_ARGS itself is a string list with items separated by ';'. Passing a string list that's also
 # separated by ';' as an argument via CMAKE_ARGS will make it confused. Converting it to "," and then to ";" is a
 # workaround.
-string(REPLACE ";" "," _cura_no_install_plugins "${STESLICER_NO_INSTALL_PLUGINS}")
+string(REPLACE ";" "," _steslicer_no_install_plugins "${STESLICER_NO_INSTALL_PLUGINS}")
 
 ExternalProject_Add(Uranium
     GIT_REPOSITORY https://github.com/ultimaker/Uranium
-    GIT_TAG origin/${URANIUM_BRANCH_OR_TAG}
+    GIT_TAG ${URANIUM_BRANCH_OR_TAG}
     GIT_SHALLOW 1
     STEP_TARGETS update
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNALPROJECT_INSTALL_PREFIX}
                -DCMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}
-               -DUM_NO_INSTALL_PLUGINS=${_cura_no_install_plugins}
+               -DUM_NO_INSTALL_PLUGINS=${_steslicer_no_install_plugins}
 )
 
 SetProjectDependencies(TARGET Uranium)
