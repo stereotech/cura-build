@@ -13,8 +13,8 @@ find_package(SciPy 0.17 REQUIRED)
 string(REPLACE ";" "," _steslicer_no_install_plugins "${STESLICER_NO_INSTALL_PLUGINS}")
 
 ExternalProject_Add(Uranium
-    GIT_REPOSITORY https://github.com/ultimaker/Uranium
-    GIT_TAG ${URANIUM_BRANCH_OR_TAG}
+    GIT_REPOSITORY https://gitlab.com/stereotech/steslicer/Uranium
+    GIT_TAG origin/${URANIUM_BRANCH_OR_TAG}
     GIT_SHALLOW 1
     STEP_TARGETS update
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNALPROJECT_INSTALL_PREFIX}
