@@ -7,6 +7,7 @@ Param (
   [string]$UraniumBranchOrTag = "steslicer",
   [string]$CuraEngineBranchOrTag = "master",
   [string]$SteSlicerBinaryDataBranchOrTag = "master",
+  [string]$SteSlicerPluginsBranchOrTag = "master",
   [string]$CharonBranchOrTag = "master",
   # Cura release parameters
   [Parameter(Mandatory = $true)]
@@ -60,6 +61,7 @@ else {
   --env CURAENGINE_BRANCH_OR_TAG=$CuraEngineBranchOrTag `
   --env LIBCHARON_BRANCH_OR_TAG=$CharonBranchOrTag `
   --env STESLICERBINARYDATA_BRANCH_OR_TAG=$SteSlicerBinaryDataBranchOrTag `
+  --env STESLICERPLUGINS_BRANCH_OR_TAG=$SteSlicerPluginsBranchOrTag `
   --env STESLICER_VERSION_MAJOR=$SteSlicerVersionMajor `
   --env STESLICER_VERSION_MINOR=$SteSlicerVersionMinor `
   --env STESLICER_VERSION_PATCH=$SteSlicerVersionPatch `

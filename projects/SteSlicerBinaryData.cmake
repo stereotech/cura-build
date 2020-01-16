@@ -6,6 +6,6 @@ ExternalProject_Add(SteSlicerBinaryData
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNALPROJECT_INSTALL_PREFIX}
 )
 
-SetProjectDependencies(TARGET SteSlicerBinaryData DEPENDS Cura)
+SetProjectDependencies(TARGET SteSlicerBinaryData DEPENDS SteSlicer)
 
 add_dependencies(update SteSlicerBinaryData-update)
