@@ -4,6 +4,9 @@ rem to build a STE Slicer release.
 @echo OFF
 
 echo ========== Build Variables BEGIN ==========
+echo 
+echo CI_JOB_TOKEN                = "%CI_JOB_TOKEN%"
+echo
 echo STESLICER_BUILD_ENV_PATH    = "%CURA_BUILD_ENV_PATH%"
 echo STESLICER_BUILD_SRC_PATH    = "%STESLICER_BUILD_SRC_PATH%"
 echo STESLICER_BUILD_OUTPUT_PATH = "%STESLICER_BUILD_OUTPUT_PATH%"
