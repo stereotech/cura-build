@@ -4,7 +4,7 @@ Param (
   [string]$DockerImage = "stereotech/ste-slicer-build-environment:stable",
 
   [AllowEmptyString()]
-  [string]$GitlabCiToken = "",
+  [string]$GitlabCiToken,
   # Branch parameters
   [string]$SteSlicerBranchOrTag = "develop",
   [string]$UraniumBranchOrTag = "steslicer",
