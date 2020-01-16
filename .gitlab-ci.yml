@@ -6,7 +6,7 @@ buildWindowsInstaller:
   stage: build
   image: stereotech/ste-slicer-build-environment:stable
   script: 
-    - .\scripts\windows\build.ps1 -GitlabCiToken ${CI_JOB_TOKEN} -SteSlicerVersionMajor 0 -SteSlicerVersionMinor 1 -SteSlicerVersionPatch 0
+    - .\scripts\windows\build.ps1 -GitlabCiToken $CI_JOB_TOKEN -SteSlicerVersionMajor 0 -SteSlicerVersionMinor 1 -SteSlicerVersionPatch 0
   artifacts:
     name: "steslicer"
     paths:
