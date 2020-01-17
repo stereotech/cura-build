@@ -10,4 +10,4 @@ buildWindowsInstaller:
   artifacts:
     name: "steslicer"
     paths:
-      - windows-installers
+      - windows-installers\build\_CPack_Packages\win64\NSIS
