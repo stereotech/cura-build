@@ -1,5 +1,7 @@
+set(STESLICERPLUGINS_REPO_LINK "https://${STESLICERPLUGINS_DEPLOY_USERNAME}:${STESLICERPLUGINS_DEPLOY_TOKEN}@gitlab.com/stereotech/steslicer/ste-slicer-plugins.git")
+
 ExternalProject_Add(SteSlicerPlugins
-    GIT_REPOSITORY https://${STESLICERPLUGINS_DEPLOY_USERNAME}:${STESLICERPLUGINS_DEPLOY_TOKEN}@gitlab.com/stereotech/steslicer/ste-slicer-plugins.git
+    GIT_REPOSITORY ${STESLICERPLUGINS_REPO_LINK}
     GIT_TAG origin/${STESLICERPLUGINS_BRANCH_OR_TAG}
     GIT_SHALLOW 1
     STEP_TARGETS update
