@@ -1,5 +1,5 @@
 ExternalProject_Add(SteSlicerPlugins
-    GIT_REPOSITORY https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/https://gitlab.com/stereotech/steslicer/ste-slicer-plugins.git
+    GIT_REPOSITORY https://${STESLICERPLUGINS_DEPLOY_USERNAME}:${STESLICERPLUGINS_DEPLOY_TOKEN}@gitlab.com/stereotech/steslicer/ste-slicer-plugins.git
     GIT_TAG origin/${STESLICERPLUGINS_BRANCH_OR_TAG}
     GIT_SHALLOW 1
     STEP_TARGETS update

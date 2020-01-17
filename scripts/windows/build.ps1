@@ -4,7 +4,9 @@ Param (
   [string]$DockerImage = "stereotech/ste-slicer-build-environment:stable",
 
   [Parameter(Mandatory = $true)]
-  [string]$GitlabCiToken,
+  [string]$SteSlicerPluginsDeployUsername,
+  [Parameter(Mandatory = $true)]
+  [string]$SteSlicerPluginsDeployToken,
   # Branch parameters
   [string]$SteSlicerBranchOrTag = "develop",
   [string]$UraniumBranchOrTag = "steslicer",
@@ -71,6 +73,7 @@ else {
   --env STESLICER_VERSION_EXTRA=$SteSlicerVersionExtra `
   --env STESLICER_BUILD_NAME=$SteSlicerBuildName `
   --env CPACK_GENERATOR=$CPACK_GENERATOR `
-  --env CI_JOB_TOKEN=$GitlabCiToken `
+  --env STESLICERPLUGINS_DEPLOY_USERNAME=$SteSlicerPluginsDeployUsername `
+  --env STESLICERPLUGINS_DEPLOY_TOKEN=$SteSlicerPluginsDeployToken `
   $DockerImage `
   powershell.exe -Command cmd /c "C:\steslicer-build-src\scripts\windows\build_in_docker_vs2015.cmd"
