@@ -6,9 +6,9 @@ buildNightlyRelease:
   stage: build
   image: stereotech/ste-slicer-build-environment:stable
   before_script:
-    - VERSION_MAJOR=$(date --date="-19 year" +%-g)
-    - VERSION_MINOR=$(date --date="-19 year" +%-m)
-    - VERSION_PATCH=$(date --date="-19 year" +%-d)
+    - VERSION_MAJOR="${date --date="-19 year" +%-g}"
+    - VERSION_MINOR="${date --date="-19 year" +%-m}"
+    - VERSION_PATCH="${date --date="-19 year" +%-d}"
   script:
     - .\scripts\windows\build.ps1 \
     - -SteSlicerBranchOrTag develop
