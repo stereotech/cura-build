@@ -8,7 +8,9 @@ Param (
   [Parameter(Mandatory = $true)]
   [string]$SteSlicerPluginsDeployToken,
   # Branch parameters
-  [string]$SteSlicerBranchOrTag = "develop",
+  [Parameter(Mandatory = $true)]
+  [string]$SteSlicerBranchOrTag,
+
   [string]$UraniumBranchOrTag = "steslicer",
   [string]$CuraEngineBranchOrTag = "master",
   [string]$SteSlicerBinaryDataBranchOrTag = "master",
@@ -21,7 +23,7 @@ Param (
   [Int32]$SteSlicerVersionMinor,
   [Parameter(Mandatory = $true)]
   [Int32]$SteSlicerVersionPatch,
-  [Parameter(Mandatory = $false)]
+  [Parameter(Mandatory = $true)]
   [AllowEmptyString()]
   [string]$SteSlicerVersionExtra = "",
   [Parameter(Mandatory = $false)]
