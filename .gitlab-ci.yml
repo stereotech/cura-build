@@ -14,9 +14,9 @@ buildNightlyRelease:
       -SteSlicerBranchOrTag "develop"
       -SteSlicerPluginsDeployUsername $DEPLOY_USERNAME
       -SteSlicerPluginsDeployToken $DEPLOY_TOKEN
-      -SteSlicerVersionMajor $VERSION_MAJOR
-      -SteSlicerVersionMinor $VERSION_MINOR
-      -SteSlicerVersionPatch $VERSION_PATCH
+      -SteSlicerVersionMajor $env:VERSION_MAJOR
+      -SteSlicerVersionMinor $env:VERSION_MINOR
+      -SteSlicerVersionPatch $env:VERSION_PATCH
       -SteSlicerVersionExtra "nightly"
   only:
     refs:
@@ -38,7 +38,7 @@ deployNightlyRelease:
     - $Env:VERSION_PATCH=date --date="-19 year" +%-d
   script:
     - python -m zipfile -c steslicer-$env:VERSION_MAJOR.$env:VERSION_MINOR.$env:VERSION_PATCH-nightly.zip windows-installers/build/package
-    - aws s3 cp ste-update.stu s3://software.stereotech.org/steslicer/testing/ --acl public-read
+    - aws s3 cp steslicer-$env:VERSION_MAJOR.$env:VERSION_MINOR.$env:VERSION_PATCH-nightly.zip s3://software.stereotech.org/steslicer/testing/ --acl public-read
 
 buildWindowsInstaller:
   stage: build
