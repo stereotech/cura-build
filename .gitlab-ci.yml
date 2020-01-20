@@ -23,10 +23,23 @@ buildNightlyRelease:
       - master
       - schedules
   artifacts:
-    name: "steslicer-$VERSION_MAJOR.$VERSION_MINOR.VERSION_PATCH-nightly"
+    name: "steslicer-$env:VERSION_MAJOR.$env:VERSION_MINOR.$env:VERSION_PATCH-nightly"
     paths:
       - windows-installers\build\package
-  
+
+deployNightlyRelease:
+  stage: deploy
+  image: python:latest
+  needs: [buildNightlyRelease]
+  before_script:
+    - pip install awscli
+    - VERSION_MAJOR=$(date --date="-19 year" +%-g)
+    - VERSION_MINOR=$(date --date="-19 year" +%-m)
+    - VERSION_PATCH=$(date --date="-19 year" +%-d)
+  script:
+    - python -m zipfile -c steslicer-$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH-nightly.zip windows-installers/build/package
+    - aws s3 cp steslicer-$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH-nightly.zip s3://software.stereotech.org/steslicer/testing/ --acl public-read
+
 buildWindowsInstaller:
   stage: build
   image: stereotech/ste-slicer-build-environment:stable
