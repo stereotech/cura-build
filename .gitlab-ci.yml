@@ -8,6 +8,7 @@ buildNightlyRelease:
   tags:
     - windows
     - powershell
+    - docker
   before_script:
     - $Env:VERSION_MAJOR=date --date="-19 year" +%-g
     - $Env:VERSION_MINOR=date --date="-19 year" +%-m
