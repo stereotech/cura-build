@@ -5,6 +5,9 @@ stages:
 buildNightlyRelease:
   stage: build
   image: stereotech/ste-slicer-build-environment:stable
+  tags:
+    - windows
+    - powershell
   before_script:
     - $Env:VERSION_MAJOR=date --date="-19 year" +%-g
     - $Env:VERSION_MINOR=date --date="-19 year" +%-m
