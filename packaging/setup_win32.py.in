@@ -128,7 +128,7 @@ build_options = {
         "appdirs",
         "packaging",
         "cryptography",
-        "Crypto.Cipher",
+        "Crypto",
         "xml.etree",
         "uuid",
         "serial",
