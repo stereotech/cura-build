@@ -68,6 +68,7 @@ buildStableRelease:
     name: "steslicer-$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
     paths:
       - "windows-installers/*.exe"
+  allow_failure: false
 
 deployStableRelease:
   stage: deploy
@@ -77,4 +78,3 @@ deployStableRelease:
     - pip install awscli
   script:
     - aws s3 cp "windows-installers/*.exe" s3://software.stereotech.org/steslicer/stable/ --acl public-read
-  when: manual
