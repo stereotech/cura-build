@@ -128,7 +128,7 @@ build_options = {
         "appdirs",
         "packaging",
         "cryptography",
-        "pycryptodome",
+        "Crypto.Cipher",
         "xml.etree",
         "uuid",
         "serial",
