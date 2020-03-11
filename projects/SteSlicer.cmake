@@ -19,6 +19,7 @@ ExternalProject_Add(SteSlicer
                -DSTESLICER_NO_INSTALL_PLUGINS=${_steslicer_no_install_plugins}
 )
 
-SetProjectDependencies(TARGET SteSlicer DEPENDS Uranium CuraEngine)
+# SetProjectDependencies(TARGET SteSlicer DEPENDS Uranium CuraEngine)
+SetProjectDependencies(TARGET SteSlicer DEPENDS Uranium)
 
 add_dependencies(update SteSlicer-update)
