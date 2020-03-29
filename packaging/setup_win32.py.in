@@ -65,13 +65,13 @@ hooks.load_scipy = load_scipy
 trimesh_resources_path = os.path.join(os.path.dirname(trimesh.__file__), "resources")
 trimesh_resources_required_files = [
     "blender.py.template",
-    "collada.dae.template",
+    #"collada.dae.template",
     "dxf.json.template",
     "ply.template",
-    "svg.xml.template",
+    "svg.template.xml",
     "units_to_inches.json",
     "viewer.html.template",
-    "yafaray.xml.template",
+    #"yafaray.xml.template",
 ]
 for file_name in trimesh_resources_required_files:
     item = (os.path.join(trimesh_resources_path, file_name), os.path.join("trimesh", "resources", file_name))
