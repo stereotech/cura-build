@@ -77,4 +77,4 @@ deployStableRelease:
   before_script:
     - pip install awscli
   script:
-    - aws s3 cp "windows-installers/*.exe" s3://software.stereotech.org/steslicer/stable/ --acl public-read
+    - aws s3 cp "windows-installers/" s3://software.stereotech.org/steslicer/stable/ --include "*.exe" --acl public-read
