@@ -24,7 +24,7 @@ buildNightlyRelease:
       -SteSlicerVersionExtra "nightly"
   only:
     refs:
-      - master
+      - develop
       - schedules
   artifacts:
     name: "steslicer-$env:VERSION_MAJOR.$env:VERSION_MINOR.$env:VERSION_PATCH-nightly"
@@ -63,12 +63,11 @@ buildStableRelease:
   only:
     refs:
       - master
-  when: manual
+      - schedules
   artifacts:
     name: "steslicer-$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
     paths:
       - "windows-installers/*.exe"
-  allow_failure: false
 
 deployStableRelease:
   stage: deploy
@@ -78,3 +77,4 @@ deployStableRelease:
     - pip install awscli
   script:
     - aws s3 cp "windows-installers" s3://software.stereotech.org/steslicer/stable/ --recursive --include "*.exe" --acl public-read
+  when: manual
