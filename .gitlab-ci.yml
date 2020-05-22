@@ -75,6 +75,8 @@ deployStableRelease:
     - pip install awscli
   script:
     - aws s3 cp "windows-installers" s3://software.stereotech.org/steslicer/stable/ --recursive --include "*.exe" --acl public-read
+    - echo $VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH > latest.version
+    - aws s3 cp latest.version s3://software.stereotech.org/steslicer/stable/ --acl public-read
   only:
     - master
   when: manual
