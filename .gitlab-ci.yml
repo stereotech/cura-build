@@ -23,9 +23,8 @@ buildNightlyRelease:
       -SteSlicerVersionPatch $env:VERSION_PATCH
       -SteSlicerVersionExtra "nightly"
   only:
-    refs:
-      - develop
-      - schedules
+    - develop
+    - schedules
   artifacts:
     name: "steslicer-$env:VERSION_MAJOR.$env:VERSION_MINOR.$env:VERSION_PATCH-nightly"
     paths:
@@ -61,9 +60,8 @@ buildStableRelease:
       -SteSlicerVersionPatch $VERSION_PATCH
       -SteSlicerVersionExtra ""
   only:
-    refs:
-      - master
-      - schedules
+    - master
+    - schedules
   artifacts:
     name: "steslicer-$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
     paths:
