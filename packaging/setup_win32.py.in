@@ -150,6 +150,7 @@ build_options = {
     ],
     "include_files": [
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/bin/CuraEngine.exe", ""),
+        ("@EXTERNALPROJECT_INSTALL_PREFIX@/bin/CliParser.exe", ""),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/bin/openscad.exe", ""),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/bin/glicer_console.exe", ""),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/steslicer/plugins", ""),
