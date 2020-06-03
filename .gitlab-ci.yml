@@ -16,8 +16,8 @@ buildNightlyRelease:
   script:
     - .\scripts\windows\build.ps1
       -SteSlicerBranchOrTag "develop"
-      -SteSlicerPluginsDeployUsername $DEPLOY_USERNAME
-      -SteSlicerPluginsDeployToken $DEPLOY_TOKEN
+      -CliParserDeployUsername $CLIPARSER_DEPLOY_USERNAME
+      -CliParserDeployToken $CLIPARSER_DEPLOY_TOKEN
       -SteSlicerVersionMajor $env:VERSION_MAJOR
       -SteSlicerVersionMinor $env:VERSION_MINOR
       -SteSlicerVersionPatch $env:VERSION_PATCH
