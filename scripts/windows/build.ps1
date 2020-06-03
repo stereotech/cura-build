@@ -4,9 +4,9 @@ Param (
   [string]$DockerImage = "stereotech/ste-slicer-build-environment:stable",
 
   [Parameter(Mandatory = $true)]
-  [string]$SteSlicerPluginsDeployUsername,
+  [string]$CliParserDeployUsername,
   [Parameter(Mandatory = $true)]
-  [string]$SteSlicerPluginsDeployToken,
+  [string]$CliParserDeployToken,
   # Branch parameters
   [Parameter(Mandatory = $true)]
   [string]$SteSlicerBranchOrTag,
@@ -14,7 +14,7 @@ Param (
   [string]$UraniumBranchOrTag = "steslicer",
   [string]$CuraEngineBranchOrTag = "master",
   [string]$SteSlicerBinaryDataBranchOrTag = "master",
-  [string]$SteSlicerPluginsBranchOrTag = "master",
+  [string]$CliParserBranchOrTag = "master",
   [string]$CharonBranchOrTag = "master",
   # Cura release parameters
   [Parameter(Mandatory = $true)]
@@ -68,14 +68,14 @@ else {
   --env CURAENGINE_BRANCH_OR_TAG=$CuraEngineBranchOrTag `
   --env LIBCHARON_BRANCH_OR_TAG=$CharonBranchOrTag `
   --env STESLICERBINARYDATA_BRANCH_OR_TAG=$SteSlicerBinaryDataBranchOrTag `
-  --env STESLICERPLUGINS_BRANCH_OR_TAG=$SteSlicerPluginsBranchOrTag `
+  --env CLIPARSER_BRANCH_OR_TAG=$CliParserBranchOrTag `
   --env STESLICER_VERSION_MAJOR=$SteSlicerVersionMajor `
   --env STESLICER_VERSION_MINOR=$SteSlicerVersionMinor `
   --env STESLICER_VERSION_PATCH=$SteSlicerVersionPatch `
   --env STESLICER_VERSION_EXTRA=$SteSlicerVersionExtra `
   --env STESLICER_BUILD_NAME=$SteSlicerBuildName `
   --env CPACK_GENERATOR=$CPACK_GENERATOR `
-  --env STESLICERPLUGINS_DEPLOY_USERNAME=$SteSlicerPluginsDeployUsername `
-  --env STESLICERPLUGINS_DEPLOY_TOKEN=$SteSlicerPluginsDeployToken `
+  --env CLIPARSER_DEPLOY_USERNAME=$CliParserDeployUsername `
+  --env CLIPARSER_DEPLOY_TOKEN=$CliParserDeployToken `
   $DockerImage `
   powershell.exe -Command cmd /c "C:\steslicer-build-src\scripts\windows\build_in_docker_vs2015.cmd"

@@ -54,8 +54,8 @@ buildStableRelease:
   script:
     - .\scripts\windows\build.ps1
       -SteSlicerBranchOrTag "master"
-      -SteSlicerPluginsDeployUsername $DEPLOY_USERNAME
-      -SteSlicerPluginsDeployToken $DEPLOY_TOKEN
+      -CliParserDeployUsername $CLIPARSER_DEPLOY_USERNAME
+      -CliParserDeployToken $CLIPARSER_DEPLOY_TOKEN
       -SteSlicerVersionMajor $VERSION_MAJOR
       -SteSlicerVersionMinor $VERSION_MINOR
       -SteSlicerVersionPatch $VERSION_PATCH
