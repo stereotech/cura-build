@@ -10,9 +10,9 @@ buildNightlyRelease:
     - powershell
     - docker
   before_script:
-    - $Env:VERSION_MAJOR=date --date="-19 year" +%-g
-    - $Env:VERSION_MINOR=date --date="-19 year" +%-m
-    - $Env:VERSION_PATCH=date --date="-19 year" +%-d
+    - $Env:VERSION_MAJOR=(Get-Date).AddYears(-2019).Year
+    - $Env:VERSION_MINOR=(Get-Date).AddYears(-2019).Month
+    - $Env:VERSION_PATCH=(Get-Date).AddYears(-2019).Day
   script:
     - .\scripts\windows\build.ps1
       -SteSlicerBranchOrTag "develop"
