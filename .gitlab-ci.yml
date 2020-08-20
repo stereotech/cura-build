@@ -2,6 +2,9 @@ stages:
   - build
   - deploy
 
+variables:
+  GIT_DEPTH: 5
+
 buildInDocker:
   stage: build
   image: stereotech/ste-slicer-build-environment:stable
