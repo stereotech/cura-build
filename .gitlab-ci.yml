@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  GIT_DEPTH: 5
+  GIT_DEPTH: 1
 
 buildInDocker:
   stage: build
