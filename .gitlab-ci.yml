@@ -4,6 +4,7 @@ stages:
 
 variables:
   GIT_DEPTH: 1
+  GIT_STRATEGY: none
 
 buildInDocker:
   stage: build
