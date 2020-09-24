@@ -2,54 +2,50 @@ stages:
   - build
   - deploy
 
-variables:
-  GIT_DEPTH: 1
-  GIT_STRATEGY: none
-
-buildInDocker:
-  stage: build
-  image: stereotech/ste-slicer-build-environment:stable
-  tags:
-    - windows
-    - powershell
-    - docker
-  before_script:
-    - $Env:STESLICER_VERSION_MAJOR=(Get-Date).AddYears(-2019).Year
-    - $Env:STESLICER_VERSION_MINOR=(Get-Date).AddYears(-2019).Month
-    - $Env:STESLICER_VERSION_PATCH=(Get-Date).AddYears(-2019).Day
-    - $Env:STESLICER_VERSION_EXTRA=nightly
-    - $Env:STESLICER_BUILD_SRC_PATH=$env:CI_PROJECT_DIR
-    - $Env:STESLICER_BUILD_OUTPUT_PATH=$env:CI_PROJECT_DIR\windows-installers
-    - $Env:STESLICER_BRANCH_OR_TAG=develop
-    - $Env:URANIUM_BRANCH_OR_TAG=steslicer
-    - $Env:CURAENGINE_BRANCH_OR_TAG=master
-    - $Env:LIBCHARON_BRANCH_OR_TAG=master
-    - $Env:STESLICERBINARYDATA_BRANCH_OR_TAG=master
-    - $Env:CLIPARSER_BRANCH_OR_TAG=master
-    - $Env:CPACK_GENERATOR=NSIS
-    - $Env:STESLICER_BUILD_NAME=win64
-    - echo $Env:STESLICER_VERSION_MAJOR
-    - echo $Env:STESLICER_VERSION_MINOR
-    - echo $Env:STESLICER_VERSION_PATCH
-    - echo $Env:STESLICER_VERSION_EXTRA
-    - echo $Env:STESLICER_BUILD_SRC_PATH
-    - echo $Env:STESLICER_BUILD_OUTPUT_PATH
-    - echo $Env:STESLICER_BRANCH_OR_TAG
-    - echo $Env:URANIUM_BRANCH_OR_TAG
-    - echo $Env:CURAENGINE_BRANCH_OR_TAG
-    - echo $Env:LIBCHARON_BRANCH_OR_TAG
-    - echo $Env:STESLICERBINARYDATA_BRANCH_OR_TAG
-    - echo $Env:CLIPARSER_BRANCH_OR_TAG
-    - echo $Env:CPACK_GENERATOR
-    - echo $Env:STESLICER_BUILD_NAME
-  script:
-    - powershell.exe -Command cmd /c "$env:CI_PROJECT_DIR\scripts\windows\build_in_docker_vs2015.cmd"
-  only:
-    - develop
-  artifacts:
-    name: "steslicer-$env:VERSION_MAJOR.$env:VERSION_MINOR.$env:VERSION_PATCH-nightly"
-    paths:
-      - windows-installers\build\package
+#buildInDocker:
+#  stage: build
+#  image: stereotech/ste-slicer-build-environment:stable
+#  tags:
+#    - windows
+#    - powershell
+#    - docker
+#  before_script:
+#    - $Env:STESLICER_VERSION_MAJOR=(Get-Date).AddYears(-2019).Year
+#    - $Env:STESLICER_VERSION_MINOR=(Get-Date).AddYears(-2019).Month
+#    - $Env:STESLICER_VERSION_PATCH=(Get-Date).AddYears(-2019).Day
+#    - $Env:STESLICER_VERSION_EXTRA=nightly
+#    - $Env:STESLICER_BUILD_SRC_PATH=$env:CI_PROJECT_DIR
+#    - $Env:STESLICER_BUILD_OUTPUT_PATH=$env:CI_PROJECT_DIR\windows-installers
+#    - $Env:STESLICER_BRANCH_OR_TAG=develop
+#    - $Env:URANIUM_BRANCH_OR_TAG=steslicer
+#    - $Env:CURAENGINE_BRANCH_OR_TAG=master
+#    - $Env:LIBCHARON_BRANCH_OR_TAG=master
+#    - $Env:STESLICERBINARYDATA_BRANCH_OR_TAG=master
+#    - $Env:CLIPARSER_BRANCH_OR_TAG=master
+#    - $Env:CPACK_GENERATOR=NSIS
+#    - $Env:STESLICER_BUILD_NAME=win64
+#    - echo $Env:STESLICER_VERSION_MAJOR
+#    - echo $Env:STESLICER_VERSION_MINOR
+#    - echo $Env:STESLICER_VERSION_PATCH
+#    - echo $Env:STESLICER_VERSION_EXTRA
+#    - echo $Env:STESLICER_BUILD_SRC_PATH
+#    - echo $Env:STESLICER_BUILD_OUTPUT_PATH
+#    - echo $Env:STESLICER_BRANCH_OR_TAG
+#    - echo $Env:URANIUM_BRANCH_OR_TAG
+#    - echo $Env:CURAENGINE_BRANCH_OR_TAG
+#    - echo $Env:LIBCHARON_BRANCH_OR_TAG
+#    - echo $Env:STESLICERBINARYDATA_BRANCH_OR_TAG
+#    - echo $Env:CLIPARSER_BRANCH_OR_TAG
+#    - echo $Env:CPACK_GENERATOR
+#    - echo $Env:STESLICER_BUILD_NAME
+#  script:
+#    - powershell.exe -Command cmd /c "$env:CI_PROJECT_DIR\scripts\windows\build_in_docker_vs2015.cmd"
+#  only:
+#    - develop
+#  artifacts:
+#    name: "steslicer-$env:VERSION_MAJOR.$env:VERSION_MINOR.$env:VERSION_PATCH-nightly"
+#    paths:
+#      - windows-installers\build\package
 
 buildNightlyRelease:
   stage: build
