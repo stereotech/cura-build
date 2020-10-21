@@ -30,6 +30,8 @@ jobs:
           token: ${{ secrets.STE_SLICER_PAT}}
           path: steslicer-build-environment
       
+      - run:  choco install -y vcredist140; choco install -y vcbuildtools --execution-timeout 18000 -ia "/Full"
+      
       - run: choco install -y nasm; choco install -y doxygen.install; choco install -y poedit
       
       - run: |
