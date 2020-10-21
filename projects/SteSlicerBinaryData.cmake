@@ -1,5 +1,5 @@
 ExternalProject_Add(SteSlicerBinaryData
-    GIT_REPOSITORY https://gitlab.com/stereotech/steslicer/steslicer-binary-data
+    GIT_REPOSITORY https://github.com/stereotech/steslicer-binary-data
     GIT_TAG origin/${STESLICERBINARYDATA_BRANCH_OR_TAG}
     GIT_SHALLOW 1
     STEP_TARGETS update

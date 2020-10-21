@@ -6,7 +6,7 @@ option(STESLICER_ENABLE_DEBUGMODE "Enable crash handler and other debug options 
 string(REPLACE ";" "," _steslicer_no_install_plugins "${STESLICER_NO_INSTALL_PLUGINS}")
 
 ExternalProject_Add(SteSlicer
-    GIT_REPOSITORY https://gitlab.com/stereotech/steslicer/ste-slicer
+    GIT_REPOSITORY https://github.com/stereotech/STE-Slicer
     GIT_TAG origin/${STESLICER_BRANCH_OR_TAG}
     GIT_SHALLOW 1
     STEP_TARGETS update
