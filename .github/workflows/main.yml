@@ -23,10 +23,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - run: |
-          choco install -y nasm; \
-          choco install -y doxygen.install; \
-          choco install -y poedit
+      - run: choco install -y nasm; choco install -y doxygen.install; choco install -y poedit
       
       - run: |
           echo ${{env.CURA_BUILD_ENV_PATH}}\bin >> $GITHUB_PATH
