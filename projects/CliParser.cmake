@@ -17,7 +17,7 @@ elseif (BUILD_OS_OSX)
     endif()
 endif()
 
-set(CLIPARSER_REPO_LINK "http://${CLIPARSER_DEPLOY_USERNAME}:${CLIPARSER_DEPLOY_TOKEN}@gitlab.com/stereotech/steslicer/Cli-Parser.git")
+set(CLIPARSER_REPO_LINK "http://${CLIPARSER_DEPLOY_USERNAME}:${CLIPARSER_DEPLOY_TOKEN}@github.com/stereotech/Cli-Parser.git")
 message(STATUS "Repo link: ${CLIPARSER_REPO_LINK}")
 
 
