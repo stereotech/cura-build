@@ -16,7 +16,14 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
+    env:
+      VERSION_MAJOR: '0'
+      VERSION_MINOR: '0'
+      VERSION_PATCH: '0'
     
     steps:
       - run: docker pull stereotech/ste-slicer-build-environment:stable
-    
+        
+      - uses: actions/checkout@v2.3.3
+      
+      - run: .\scripts\windows\build.ps1 -SteSlicerBranchOrTag "develop" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{env.VERSION_MAJOR}} -SteSlicerVersionMinor ${{env.VERSION_MINOR}} -SteSlicerVersionPatch ${{env.VERSION_PATCH}} -SteSlicerVersionExtra "nightly"
