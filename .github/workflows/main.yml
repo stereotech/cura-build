@@ -16,10 +16,29 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
+    env:
+      CURA_BUILD_ENV_BUILD_TYPE: Release
+      CURA_BUILD_ENV_PATH: C:\\cura-build-environment
+      CURA_BUILD_ENV_WORK_DIR: C:\\temp\\cura-build-environment
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        
-      - run: .\scripts\windows\build_in_docker_vs2015.cmd
+      - run: |
+          choco install -y nasm; \
+          choco install -y doxygen.install; \
+          choco install -y poedit
+      
+      - run: |
+          echo ${{env.CURA_BUILD_ENV_PATH}}\bin >> $GITHUB_PATH
+          cd ${{env.CURA_BUILD_ENV_WORK_DIR}}
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ^
+                -DCMAKE_PREFIX_PATH="${{env.CURA_BUILD_ENV_PATH}}" ^
+                -DCMAKE_INSTALL_PREFIX="${{env.CURA_BUILD_ENV_PATH}}" ^
+                -DBUILD_OS_WIN64=ON ^
+                -DCURA_ARCUS_BRANCH_OR_TAG="master" ^
+                -DCURA_SAVITAR_BRANCH_OR_TAG="master" ^
+                -G "NMake Makefiles" ^
+                ..\src
+          nmake
