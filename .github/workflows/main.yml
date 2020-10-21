@@ -16,8 +16,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
-    container: stereotech/ste-slicer-build-environment:stable
     
     steps:
-      - run: echo "AAA"
+      - run: docker pull stereotech/ste-slicer-build-environment:stable
     
