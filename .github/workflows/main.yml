@@ -34,7 +34,7 @@ jobs:
       
       - run: choco install -y nasm; choco install -y doxygen.install; choco install -y poedit
       
-      - run: call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+      - run: Start-Process "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
       
       - run: |
           mkdir ${{ env.CURA_BUILD_ENV_WORK_DIR }}\\src
