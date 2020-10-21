@@ -23,9 +23,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+        with:
+          repository: stereotech/steslicer-build-environment
+          token: ${{ secrets.STE_SLICER_PAT}}
+          path: steslicer-build-environment
+      
       - run: choco install -y nasm; choco install -y doxygen.install; choco install -y poedit
       
       - run: |
+          cd steslicer-build-environment
           echo ${{env.CURA_BUILD_ENV_PATH}}\bin >> $GITHUB_PATH
           cd ${{env.CURA_BUILD_ENV_WORK_DIR}}
           mkdir build
