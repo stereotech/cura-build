@@ -18,8 +18,8 @@ jobs:
     runs-on: windows-latest
     env:
       CURA_BUILD_ENV_BUILD_TYPE: Release
-      CURA_BUILD_ENV_PATH: ${{ env.GITHUB_WORKSPACE }}\\steslicer-build-environment
-      CURA_BUILD_ENV_WORK_DIR: ${{ env.GITHUB_WORKSPACE }}\\steslicer-build-environment\\temp
+      CURA_BUILD_ENV_PATH: ${{ github.workspace }}\\steslicer-build-environment
+      CURA_BUILD_ENV_WORK_DIR: ${{ github.workspace }}\\steslicer-build-environment\\temp
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
