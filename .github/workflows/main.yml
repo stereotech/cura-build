@@ -22,7 +22,7 @@ jobs:
       VERSION_PATCH: '0'
     
     steps:
-      - run: docker pull stereotech/ste-slicer-build-environment:stable
+      #- run: docker pull stereotech/ste-slicer-build-environment:stable
         
       - uses: actions/checkout@v2.3.3
       
