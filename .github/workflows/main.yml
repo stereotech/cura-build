@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the develop branch
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    env:
+      VERSION_MAJOR: '0'
+      VERSION_MINOR: '0'
+      VERSION_PATCH: '0'
+    
+    steps:
+      - run: Get-PSSessionConfiguration -Name * | Format-List -Property *
+      - uses: actions/checkout@v2.3.3
+      - run: docker pull stereotech/ste-slicer-build-environment:stable
+      - run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "develop" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{env.VERSION_MAJOR}} -SteSlicerVersionMinor ${{env.VERSION_MINOR}} -SteSlicerVersionPatch ${{env.VERSION_PATCH}} -SteSlicerVersionExtra "nightly"
