@@ -1,7 +1,7 @@
 # This script builds a Cura release using the cura-build-environment Windows docker image.
 Param (
   # Docker parameters
-  [string]$DockerImage = "stereotech/ste-slicer-build-environment:stable",
+  [string]$DockerImage = "stereotech/ste-slicer-build-environment:ltsc2019",
 
   [Parameter(Mandatory = $true)]
   [string]$CliParserDeployUsername,
