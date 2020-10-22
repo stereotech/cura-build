@@ -4,15 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- develop
 
 pool:
   vmImage: 'windows-latest'
 
-resources:
- containers:
-   - container: windows
-     image: stereotech/ste-slicer-build-environment:stable
+container: stereotech/ste-slicer-build-environment:stable
 
 steps:
 - script: |
