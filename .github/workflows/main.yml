@@ -22,10 +22,7 @@ jobs:
       VERSION_PATCH: '0'
     
     steps:
-      - run: docker pull stereotech/ste-slicer-build-environment:stable
-        
-      - uses: actions/checkout@v2.3.3
-      
       - run: '[System.Environment]::OSVersion.Version'
-      
+      - uses: actions/checkout@v2.3.3
+      - run: docker pull stereotech/ste-slicer-build-environment:stable
       - run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "develop" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{env.VERSION_MAJOR}} -SteSlicerVersionMinor ${{env.VERSION_MINOR}} -SteSlicerVersionPatch ${{env.VERSION_PATCH}} -SteSlicerVersionExtra "nightly"
