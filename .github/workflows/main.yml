@@ -22,7 +22,8 @@ jobs:
       VERSION_PATCH: '0'
     
     steps:
-      - run: Get-PSSessionConfiguration -Name * | Format-List -Property *
+      - run: |
+          echo "VERSION_MAJOR=(Get-Date).AddYears(-2019).Year" >> $GITHUB_ENV
       - uses: actions/checkout@v2.3.3
       - run: docker pull stereotech/ste-slicer-build-environment:ltsc2019
       - run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "develop" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{env.VERSION_MAJOR}} -SteSlicerVersionMinor ${{env.VERSION_MINOR}} -SteSlicerVersionPatch ${{env.VERSION_PATCH}} -SteSlicerVersionExtra "nightly"
