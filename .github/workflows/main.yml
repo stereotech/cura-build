@@ -16,10 +16,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
-    env:
-      VERSION_MAJOR: '0'
-      VERSION_MINOR: '0'
-      VERSION_PATCH: '0'
     
     steps:
       - name: Get current date
@@ -28,12 +24,19 @@ jobs:
           echo "::set-output name=year::$(date --date="-19 year" +%-g)"
           echo "::set-output name=month::$(date --date="-19 year" +%-m)"
           echo "::set-output name=day::$(date --date="-19 year" +%-d)"
-        
-      - run: |
-          echo "VERSION_MAJOR=${{ steps.date.outputs.year }}" >> $GITHUB_ENV
-          echo "VERSION_MINOR=${{ steps.date.outputs.month }}" >> $GITHUB_ENV
-          echo "VERSION_PATCH=${{ steps.date.outputs.day }}" >> $GITHUB_ENV
           
       - uses: actions/checkout@v2.3.3
-      - run: docker pull stereotech/ste-slicer-build-environment:ltsc2019
-      - run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "develop" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{env.VERSION_MAJOR}} -SteSlicerVersionMinor ${{env.VERSION_MINOR}} -SteSlicerVersionPatch ${{env.VERSION_PATCH}} -SteSlicerVersionExtra "nightly"
+        
+      - name: Pull build environment
+        run: docker pull stereotech/ste-slicer-build-environment:ltsc2019
+        
+      - name: Build STE Slicer
+        run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "develop" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{ steps.date.outputs.year }} -SteSlicerVersionMinor ${{ steps.date.outputs.month }} -SteSlicerVersionPatch ${{ steps.date.outputs.day }} -SteSlicerVersionExtra "nightly"
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: steslicer-${{ steps.date.outputs.year }}.${{ steps.date.outputs.month }}.${{ steps.date.outputs.day }}-nightly
+          path: |
+            windows-installers/*.exe
+            windows-installers/build/package
