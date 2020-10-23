@@ -3,8 +3,6 @@ rem to build a STE Slicer release.
 
 @echo OFF
 
-pip install pycryptodome
-
 echo ========== Build Variables BEGIN ==========
 echo
 echo CLIPARSER_DEPLOY_USERNAME  = "%CLIPARSER_DEPLOY_USERNAME%"
@@ -63,7 +61,7 @@ cmake -DCMAKE_BUILD_TYPE=Release ^
       -DCPACK_GENERATOR="%CPACK_GENERATOR%" ^
       -G "NMake Makefiles" ^
       .
-nmake VERBOSE=1
+nmake
 nmake package
 
 rem Copy all build data
