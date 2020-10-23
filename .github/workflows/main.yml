@@ -22,8 +22,18 @@ jobs:
       VERSION_PATCH: '0'
     
     steps:
+      - name: Get current date
+        id: date
+        run: |
+          echo "::set-output name=year::$(date --date="-19 year" +%-g)"
+          echo "::set-output name=month::$(date --date="-19 year" +%-m)"
+          echo "::set-output name=day::$(date --date="-19 year" +%-d)"
+        
       - run: |
-          echo "VERSION_MAJOR=(Get-Date).AddYears(-2019).Year" >> $GITHUB_ENV
+          echo "VERSION_MAJOR=${{ steps.date.outputs.year }}" >> $GITHUB_ENV
+          echo "VERSION_MINOR=${{ steps.date.outputs.month }}" >> $GITHUB_ENV
+          echo "VERSION_PATCH=${{ steps.date.outputs.day }}" >> $GITHUB_ENV
+          
       - uses: actions/checkout@v2.3.3
       - run: docker pull stereotech/ste-slicer-build-environment:ltsc2019
       - run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "develop" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{env.VERSION_MAJOR}} -SteSlicerVersionMinor ${{env.VERSION_MINOR}} -SteSlicerVersionPatch ${{env.VERSION_PATCH}} -SteSlicerVersionExtra "nightly"
