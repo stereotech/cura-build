@@ -12,7 +12,7 @@ Param (
   [string]$SteSlicerBranchOrTag,
 
   [string]$UraniumBranchOrTag = "steslicer",
-  [string]$CuraEngineBranchOrTag = "master",
+  [string]$CuraEngineBranchOrTag = "develop",
   [string]$SteSlicerBinaryDataBranchOrTag = "master",
   [string]$CliParserBranchOrTag = "master",
   [string]$CharonBranchOrTag = "master",
