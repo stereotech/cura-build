@@ -50,7 +50,7 @@ jobs:
 
       - name: Build STE Slicer Release
         if: github.event_name == 'workflow_dispatch'
-        run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "master" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{ github.event.inputs.versionMajor }} -SteSlicerVersionMinor ${{ github.event.inputs.versionMinor }} -SteSlicerVersionPatch ${{ github.event.inputs.versionPatch }}
+        run: scripts\windows\build.ps1 -SteSlicerBranchOrTag "master" -CliParserDeployUsername ${{ secrets.CLIPARSER_DEPLOY_USERNAME }} -CliParserDeployToken ${{ secrets.CLIPARSER_DEPLOY_TOKEN }} -SteSlicerVersionMajor ${{ github.event.inputs.versionMajor }} -SteSlicerVersionMinor ${{ github.event.inputs.versionMinor }} -SteSlicerVersionPatch ${{ github.event.inputs.versionPatch }} -SteSlicerVersionExtra ""
 
       - name: Upload a Nightly Build Artifact
         if: github.event_name != 'workflow_dispatch'
